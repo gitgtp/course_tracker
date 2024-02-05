@@ -3,7 +3,7 @@
 Track your progress on various courses with the Course Progress Tracker. Set the number of hours you plan to spend per week, the total number of days in a week you'll be studying, and your learning speed. Keep a record of your courses, including the branch, hours, days, and learning ability.
 
 ## Screenshots
-![Screenshot 1](./assets/app_preview.png)
+![Screenshot 1](tracker-pro/src/assets/app_preview.png)
 
 
 
