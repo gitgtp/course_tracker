@@ -1,0 +1,206 @@
+
+
+.timer_box {
+    position: relative;
+  width: 95%;
+  height: 20vh;
+  margin:2%  auto;
+  display: flex;
+align-items: center;
+justify-content: space-evenly;
+border-radius: 5px;
+}
+.selected_branch {
+  width: 90%;
+  height: 90%;
+  background: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.selected_branch > img {
+  width: 100%;
+  height: 100%;
+}
+
+.select_branch {
+  width: 15%;
+  height: 80%;
+  margin: auto 2%;
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  outline: 1px solid rgb(203, 203, 203);
+  align-items: center;
+  justify-content: center;
+}
+.select_options {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: scroll;
+  scrollbar-width:none;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.option {
+  width: 100%;
+  margin: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.option > img {
+  padding: 2%;
+  width: 50%;
+  margin: auto;
+}
+
+.selecthour{
+ position: relative;
+
+width: 20%;
+height: 90%;
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+.selecthour>.hour{
+    width: 100%;
+    height: 70%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    color:rgb(18, 18, 18);
+
+}
+.hourheading{
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: rgb(95, 95, 95);
+    
+}
+.selectability{
+width: 30%;
+height: 100%;
+
+    font-size: 1.6rem;
+font-weight: bold;
+color: rgb(0, 0, 0);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+margin-right: 5%;
+}
+.optionsofability{
+background:rgba(255, 255, 255, 0.8);
+border-radius: 5px;
+font-size: 1.4rem;
+  outline: 1px solid rgb(222, 221, 221);
+    width: 100%;
+height: 25%;
+   
+    display: flex;
+    align-items: center;
+}
+.optionsofability>input{
+    margin: auto 3%;
+width: 20px;
+height: 20px;
+}
+.changehour ,.changeday{
+    cursor: pointer;
+    height: 40%;
+    width: 10%;
+    font-size:2rem;
+    position: absolute;
+    right:  15%;
+    bottom: 5%;
+    margin:1% auto;
+
+}
+.changehour >div{
+    width: 100%;
+    height: 50%;
+    border-radius: 50%;
+    color: rgb(0, 0, 0);
+    display: flex;
+
+    align-items: center;
+    justify-content:center;
+    
+  
+   
+}
+.changehour>div:hover{
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background: rgb(111, 1, 184);
+    transition-duration: 500ms;
+}
+
+.changeday{
+    right: 5%;
+}
+.changeday >div{
+    width: 100%;
+    height: 50%;
+    border-radius: 50%;
+    color: rgb(0, 0, 0);
+    display: flex;
+
+    align-items: center;
+    justify-content:center;
+    
+  
+   
+}
+
+
+
+
+.changeday>div:hover{
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background: rgb(111, 1, 184);
+    transition-duration: 500ms;
+
+}
+.addcourse{
+  width: 5%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.2rem;
+  background:rgb(147, 92, 250);
+ right: -2%;
+ bottom: -5%;
+ cursor: pointer;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+}
+.addcourse:hover{
+  background: rgb(111, 1, 184);
+transition-timing-function: ease-in;
+transition-duration: 250ms;
+transform: scale(1.1);
+}
+.coursebox{
+  width: 100%;
+}

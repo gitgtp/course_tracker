@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+
+# Build artifacts
+/dist/
+/.cache/
+
+# IDE directories
+.idea/
+.vscode/
+
+# Environment file
+.env
+
+# Compiled output
+lib/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor-specific files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

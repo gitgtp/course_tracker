@@ -1,0 +1,236 @@
+.coursedata {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.indicourse {
+  position: relative;
+  width: 90%;
+  border-radius: 10px;
+
+  margin: 2%;
+
+  display: flex;
+}
+.branchbox {
+  width: 12%;
+  font-family: monospace;
+  padding: 2%;
+  background: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.branchbox > img {
+  width: 80%;
+
+  margin-bottom: 10%;
+}
+.indicoursehour,
+.indicoursedays {
+  width: 7%;
+  padding: 1%;
+  margin: 2%;
+
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.indicoursehour > span,
+.indicoursedays > span {
+  font-size: 5rem;
+  font-weight: bold;
+}
+.indicoursedays > span > span,
+.indicoursehour > span > span {
+  font-size: 1.3rem;
+}
+.indicoursetotaltime,
+.indicourseremeintime {
+  position: relative;
+  width: 15%;
+  margin: 1% 2%;
+  padding: 1%;
+  background: white;
+  outline: 1px solid rgb(213, 213, 213);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.indicoursetotaltime > :last-child {
+  position: absolute;
+  bottom: 22%;
+
+  color: rgb(74, 74, 74);
+  font-size: 1.3rem;
+}
+.indicoursetotaltime > :first-child,
+.indicourseremeintime > span {
+  font-size: 6rem;
+  margin-bottom: 5%;
+  font-weight: bold;
+}
+.indicoursetotaltime > :first-child > span,
+.indicourseremeintime > span > span {
+  font-size: 1.4rem;
+}
+
+
+
+.abilityavtar {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  color: rgb(71, 71, 71);
+}
+.remaincircle {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 10px 1px rgb(151, 151, 151);
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+}
+.remaincircle>.percentcircle{
+  font-size: 7rem;
+}
+.remaincircle>.percentcircle>span{
+  font-size: 3rem;
+}
+
+
+.downarrow {
+  width: 5%;
+  position: absolute;
+  right: 2%;
+  top: 30%;
+  padding: 1%;
+
+  cursor: pointer;
+  border-radius: 10px;
+}
+.downarrow:hover {
+  background: rgb(255, 255, 255);
+  transition-duration: 500ms;
+}
+.courseinbrief {
+  width: 90%;
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.courseparentbox {
+  width: 100%;
+  border-radius: 5px;
+  background: #ffffff;
+}
+.courseheading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-indent: 5%;
+  padding: 1.5%;
+  font-weight: bold;
+  font-size: 2.3rem;
+  border-radius: 5px;
+
+  background: rgb(255, 255, 255);
+}
+.courseheading > :nth-child(1) {
+  width: 3%;
+  position: absolute;
+  right: 10%;
+}
+.courseheading > :last-child {
+  position: absolute;
+  right: 3%;
+  width: 2%;
+}
+
+.coursetopicsbox {
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid rgb(205, 204, 204);
+}
+.topics {
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+}
+.topicshead {
+  width: 95%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+
+  font-size: 1.6rem;
+  padding: 1.5%;
+
+  border-bottom: 1px solid rgb(232, 232, 232);
+  background: rgb(255, 255, 255);
+}
+.topicshead > img {
+  width: 1.5%;
+  position: absolute;
+  right: 4%;
+}
+.subtopics {
+  width: 95%;
+}
+.subtopicschild {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  border-radius: 5px;
+  font-size: 1.5rem;
+  padding: 1%;
+  margin: 1%;
+  outline: 1px solid rgb(231, 229, 229);
+  background: rgb(255, 255, 255);
+}
+.subtopicschild:hover {
+  transition-duration: 250ms;
+  background: #efefef;
+}
+.subtopicschild > div {
+  position: absolute;
+
+  right: 5%;
+  width: 3.5%;
+}
+.svgicon {
+  opacity: 1;
+}
