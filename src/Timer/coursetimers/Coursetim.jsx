@@ -1,31 +1,148 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState} from "react";
+//importing circularprogresbar component
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
 import "./coursetim.css";
 import coursedata from "./Coursedata"; // importing data for course topics
 
+
 //localStorage.clear()
+
+//exporting Coursetim component
 export default function Coursetim({ data, currentdate }) {
-  console.log("coursetim ");
-  //let [ischecked, setischecked] = useState("white");
-  //console.log(ischecked);
- // console.log(data)
-// let [percentofnode,setpercentofnode]=useState(0)
-// let [percentofcss,setpercentofcss]=useState(1)
-// let [percentofHTML,setpercentofHTML]=useState(2)
-// let [percentofreact,setpercentofreact]=useState(4)
-// let [percentofjavascript,setpercentofjavascript]=useState(5)
-// let [percentofmongoDB,setpercentofmongoDB]=useState(6)
-
-  let [islistlocked, setislistlocked] = useState({
-    color: "red",
-    whichtopic: "",
-    d: "none",
-  });
-
+   
+  //makeing array from coursedata obj 
   let arrofcoursedata = [];
   for (const key in coursedata) {
     arrofcoursedata.push(coursedata[key]);
   }
 
+
+  // Here states are defined for percetage of how much course completed
+  let [percentofnode, setpercentofnode] = useState(
+    localStorage.node_completition
+      ? () => {
+          let totaltopics = 0;
+          let completedtopics = 0;
+
+          arrofcoursedata[3].map((v) => {
+            totaltopics += v.topics.length;
+          });
+
+          JSON.parse(localStorage.node_completition).map((v) => {
+            for (const key in v) {
+              if (v[key] == "rgb(171, 239, 0)") completedtopics++;
+            }
+          });
+
+          return Math.round((100 / totaltopics) * completedtopics);
+        }
+      : 0
+  );
+  let [percentofcss, setpercentofcss] = useState(
+    localStorage.css_completition
+      ? () => {
+          let totaltopics = 0;
+          let completedtopics = 0;
+
+          arrofcoursedata[2].map((v) => {
+            totaltopics += v.topics.length;
+          });
+
+          JSON.parse(localStorage.css_completition).map((v) => {
+            for (const key in v) {
+              if (v[key] == "rgb(171, 239, 0)") completedtopics++;
+            }
+          });
+
+          return Math.round((100 / totaltopics) * completedtopics);
+        }
+      : 0
+  );
+  let [percentofHTML, setpercentofHTML] = useState(
+    localStorage.HTML_completition
+      ? () => {
+          let totaltopics = 0;
+          let completedtopics = 0;
+
+          arrofcoursedata[1].map((v) => {
+            totaltopics += v.topics.length;
+          });
+
+          JSON.parse(localStorage.HTML_completition).map((v) => {
+            for (const key in v) {
+              if (v[key] == "rgb(171, 239, 0)") completedtopics++;
+            }
+          });
+
+          return Math.round((100 / totaltopics) * completedtopics);
+        }
+      : 0
+  );
+  let [percentofreact, setpercentofreact] = useState(
+    localStorage.react_completition
+      ? () => {
+          let totaltopics = 0;
+          let completedtopics = 0;
+
+          arrofcoursedata[5].map((v) => {
+            totaltopics += v.topics.length;
+          });
+
+          JSON.parse(localStorage.react_completition).map((v) => {
+            for (const key in v) {
+              if (v[key] == "rgb(171, 239, 0)") completedtopics++;
+            }
+          });
+
+          return Math.round((100 / totaltopics) * completedtopics);
+        }
+      : 0
+  );
+  let [percentofjavascript, setpercentofjavascript] = useState(
+    localStorage.javascript_completition
+      ? () => {
+          let totaltopics = 0;
+          let completedtopics = 0;
+
+          arrofcoursedata[0].map((v) => {
+            totaltopics += v.topics.length;
+          });
+
+          JSON.parse(localStorage.javascript_completition).map((v) => {
+            for (const key in v) {
+              if (v[key] == "rgb(171, 239, 0)") completedtopics++;
+            }
+          });
+
+          return Math.round((100 / totaltopics) * completedtopics);
+        }
+      : 0
+  );
+  let [percentofmongoDB, setpercentofmongoDB] = useState(
+    localStorage.mongoDB_completition
+      ? () => {
+          let totaltopics = 0;
+          let completedtopics = 0;
+
+          arrofcoursedata[4].map((v) => {
+            totaltopics += v.topics.length;
+          });
+
+          JSON.parse(localStorage.mongoDB_completition).map((v) => {
+            for (const key in v) {
+              if (v[key] == "rgb(171, 239, 0)") completedtopics++;
+            }
+          });
+
+          return Math.round((100 / totaltopics) * completedtopics);
+        }
+      : 0
+  );
+
+
+// Calculating How many days to left 
   let setremaindays = (value, currentdate, index) => {
     let whencreate = value.whencreate.date;
     let finalgapdate;
@@ -51,29 +168,12 @@ export default function Coursetim({ data, currentdate }) {
   return (
     <>
       <div className="coursedata">
+
         {data.map((value, index) => {
-
-// if(value.branch.branch_name=='node'){
-//   setpercentofnode(21)
-// }
-// let getpercentage=()=>{
-//   let totaltopics=0;
-//   let completedtopics=0;
-//   if(value.branch.branch_name=='node'){
-//   arrofcoursedata[0].map((v)=>{
-//     totaltopics+=v.topics.length
-// })
-//   }
-
-// for (const key in JSON.parse(localStorage.javascript_completition) {
-  
-// }
-
-//}
-
           return (
             <>
               <div
+                key={index}
                 className="indicourse"
                 style={{
                   backgroundColor:
@@ -89,7 +189,6 @@ export default function Coursetim({ data, currentdate }) {
                       ? "skyblue"
                       : "white",
                 }}
-                key={value.id}
               >
                 <div className="branchbox">
                   <img src={value.branch.branch_link} alt="" />
@@ -131,19 +230,54 @@ export default function Coursetim({ data, currentdate }) {
                   </span>
                   Remeining
                 </div>
-
                 <div className="abilityavtar">
-                  {
-                    <div className="remaincircle">
-                      <div className="percentcircle">
-                      {/* {value.branch.branch_name=='node'?percentofnode:value.branch.branch_name=='css'?percentofcss:value.branch.branch_name=='javascript'?percentofjavascript:value.branch.branch_name=='mongoDB'?percentofmongoDB:value.branch.branch_name=='HTML'?percentofHTML:percentofreact} */}
-                      {/* {value.branch.branch_name=='node'? getpercentage()
-                      :""} */}
-                        <span>%</span>
-                        
-                      </div>
-                    </div>
-                  }
+                  <CircularProgressbar
+                    value={
+                      value.branch.branch_name == "node"
+                        ? percentofnode
+                        : value.branch.branch_name == "react"
+                        ? percentofreact
+                        : value.branch.branch_name == "css"
+                        ? percentofcss
+                        : value.branch.branch_name == "HTML"
+                        ? percentofHTML
+                        : value.branch.branch_name == "mongoDB"
+                        ? percentofmongoDB
+                        : percentofjavascript
+                    }
+                    text={`${
+                      value.branch.branch_name == "node"
+                        ? percentofnode
+                        : value.branch.branch_name == "react"
+                        ? percentofreact
+                        : value.branch.branch_name == "css"
+                        ? percentofcss
+                        : value.branch.branch_name == "HTML"
+                        ? percentofHTML
+                        : value.branch.branch_name == "mongoDB"
+                        ? percentofmongoDB
+                        : percentofjavascript
+                    }%`}
+                    maxValue={100}
+                    strokeWidth={8}
+                    styles={{
+                      background: { fill: "transparent" },
+                      path: { stroke: "black" },
+
+                      trail: {
+                        stroke: `${
+                          value.branch.branch_name == "mongoDB"
+                            ? "rgb(243, 243, 243)"
+                            : "transparent"
+                        }`,
+                      },
+
+                      text: { fill: "black" },
+                    }}
+                    counterClockwise={true}
+                    background={true}
+                    backgroundPadding={10}
+                  />
                 </div>
 
                 <img
@@ -161,7 +295,10 @@ export default function Coursetim({ data, currentdate }) {
               </div>
 
               <div style={{ display: "none" }} className="courseinbrief">
+
+
                 {arrofcoursedata.map((v, i) => {
+
                   let coursename =
                     i == 0
                       ? "javascript"
@@ -176,34 +313,32 @@ export default function Coursetim({ data, currentdate }) {
                       : "react";
 
                   if (coursename === value.branch.branch_name) {
-                    // console.log(v,'++++++++++++')
-
                     return (
                       <>
-                        <div style={{}} className="courseparentbox">
+                        <div key={i} className="courseparentbox">
                           <div className="courseheading">
                             {coursename}
                             <div
-                              onClick={(event) => {
-                                let currenttopictext =
-                                  event.currentTarget.parentElement.innerText;
+                            // onClick={(event) => {
+                            //   let currenttopictext =
+                            //     event.currentTarget.parentElement.innerText;
 
-                                setislistlocked((prev) => {
-                                  return prev.color == "red"
-                                    ? {
-                                        color: "green",
-                                        d: "M25 12.034l-14.28 0-0.518-2.321c-0.883-3.293 0.65-6.576 4.159-7.516 3.473-0.93 6.534 1.061 7.432 4.41l0.425 1.686c0.143 0.534 0.691 0.85 1.225 0.707s0.85-0.691 0.707-1.225l-0.425-1.687c-1.187-4.433-5.325-7.045-9.881-5.824-4.574 1.226-6.741 5.607-5.573 9.966l0.402 1.803h-1.673c-2.206 0-4 1.794-4 4v12c0 2.206 1.794 4 4 4h18c2.206 0 4-1.794 4-4v-12c0-2.206-1.794-4-4-4zM27 28.035c0 1.102-0.898 2-2 2h-18c-1.103 0-2-0.898-2-2v-12c0-1.102 0.897-2 2-2h18c1.102 0 2 0.898 2 2v12zM16 18.035c-1.104 0-2 0.895-2 2 0 0.738 0.405 1.376 1 1.723v3.277c0 0.552 0.448 1 1 1s1-0.448 1-1v-3.277c0.595-0.346 1-0.985 1-1.723 0-1.105-0.895-2-2-2z",
-                                        whichtopic: currenttopictext,
-                                      }
-                                    : {
-                                        color: "red",
-                                        whichtopic: "none",
-                                        d: "none",
-                                      };
-                                });
-                              }}
+                            //   setislistlocked((prev) => {
+                            //     return prev.color == "red"
+                            //       ? {
+                            //           color: "green",
+                            //           d: "M25 12.034l-14.28 0-0.518-2.321c-0.883-3.293 0.65-6.576 4.159-7.516 3.473-0.93 6.534 1.061 7.432 4.41l0.425 1.686c0.143 0.534 0.691 0.85 1.225 0.707s0.85-0.691 0.707-1.225l-0.425-1.687c-1.187-4.433-5.325-7.045-9.881-5.824-4.574 1.226-6.741 5.607-5.573 9.966l0.402 1.803h-1.673c-2.206 0-4 1.794-4 4v12c0 2.206 1.794 4 4 4h18c2.206 0 4-1.794 4-4v-12c0-2.206-1.794-4-4-4zM27 28.035c0 1.102-0.898 2-2 2h-18c-1.103 0-2-0.898-2-2v-12c0-1.102 0.897-2 2-2h18c1.102 0 2 0.898 2 2v12zM16 18.035c-1.104 0-2 0.895-2 2 0 0.738 0.405 1.376 1 1.723v3.277c0 0.552 0.448 1 1 1s1-0.448 1-1v-3.277c0.595-0.346 1-0.985 1-1.723 0-1.105-0.895-2-2-2z",
+                            //           whichtopic: currenttopictext,
+                            //         }
+                            //       : {
+                            //           color: "red",
+                            //           whichtopic: "none",
+                            //           d: "none",
+                            //         };
+                            //   });
+                            // }}
                             >
-                              <svg
+                              {/* <svg
                                 fill={
                                   islistlocked.whichtopic ==
                                   value.branch.branch_name
@@ -224,12 +359,10 @@ export default function Coursetim({ data, currentdate }) {
                                       : "M25 12h-1v-3.816c0-4.589-3.32-8.184-8.037-8.184-4.736 0-7.963 3.671-7.963 8.184v3.816h-1c-2.206 0-4 1.794-4 4v12c0 2.206 1.794 4 4 4h18c2.206 0 4-1.794 4-4v-12c0-2.206-1.794-4-4-4zM10 8.184c0-3.409 2.33-6.184 5.963-6.184 3.596 0 6.037 2.716 6.037 6.184v3.816h-12v-3.816zM27 28c0 1.102-0.898 2-2 2h-18c-1.103 0-2-0.898-2-2v-12c0-1.102 0.897-2 2-2h18c1.102 0 2 0.898 2 2v12zM16 18c-1.104 0-2 0.895-2 2 0 0.738 0.405 1.376 1 1.723v3.277c0 0.552 0.448 1 1 1s1-0.448 1-1v-3.277c0.595-0.346 1-0.985 1-1.723 0-1.105-0"
                                   }
                                 ></path>
-                              </svg>
+                              </svg> */}
                             </div>
                             <img
                               onClick={(e) => {
-                                                               
-
                                 e.currentTarget.parentElement.nextElementSibling.style.display =
                                   e.currentTarget.parentElement
                                     .nextElementSibling.style.display == "none"
@@ -245,14 +378,10 @@ export default function Coursetim({ data, currentdate }) {
                             style={{ display: "none" }}
                             className="coursetopicsbox"
                           >
-                            {v.map((va) => {
-                               
-
-
-                               
+                            {v.map((va, ii) => {
                               return (
                                 <>
-                                  <div className="topics">
+                                  <div key={ii} className="topics">
                                     <div className="topicshead">
                                       {va.category}
 
@@ -274,42 +403,41 @@ export default function Coursetim({ data, currentdate }) {
                                       style={{ display: "none" }}
                                       className="subtopics"
                                     >
-                                      {va.topics.map((vo,i) => {
-                                  
-                                  let getcheck=(getforwhichsearch)=>{
-
-                                    if(JSON.parse(getforwhichsearch).some(
-                                      (obj) =>
-                                        Object.keys(
-                                          obj
-                                        ).includes(
-                                          vo
-                                        )
-                                    )){
-                                      for (let value of JSON.parse(getforwhichsearch)) {
-                                        for (const key in value) {
-                                          if(vo==key){
-                                            return value[key]
+                                      {va.topics.map((vo, iii) => {
+                                        let getcheck = (getforwhichsearch) => {
+                                          if (
+                                            JSON.parse(getforwhichsearch).some(
+                                              (obj) =>
+                                                Object.keys(obj).includes(vo)
+                                            )
+                                          ) {
+                                            for (let value of JSON.parse(
+                                              getforwhichsearch
+                                            )) {
+                                              for (const key in value) {
+                                                if (vo == key) {
+                                                  return value[key];
+                                                }
+                                              }
+                                            }
                                           }
-                                        }}
-                                    }
-                                  
-                                    if(!JSON.parse(getforwhichsearch).some(
-                                      (obj) =>
-                                        Object.keys(
-                                          obj
-                                        ).includes(
-                                          vo
-                                        )
-                                    )){
-                                      return "white"
-                                    }
-                                    }
 
+                                          if (
+                                            !JSON.parse(getforwhichsearch).some(
+                                              (obj) =>
+                                                Object.keys(obj).includes(vo)
+                                            )
+                                          ) {
+                                            return "white";
+                                          }
+                                        };
 
                                         return (
                                           <>
-                                            <div className="subtopicschild">
+                                            <div
+                                              key={iii}
+                                              className="subtopicschild"
+                                            >
                                               {vo}
                                               <div
                                                 className="checkicon"
@@ -322,6 +450,7 @@ export default function Coursetim({ data, currentdate }) {
                                                       ? "rgb(171, 239, 0)"
                                                       : "white"
                                                   );
+
 
                                                   let keyofclick =
                                                     event.currentTarget
@@ -348,9 +477,6 @@ export default function Coursetim({ data, currentdate }) {
                                                         JSON.parse(
                                                           localStorage.css_completition
                                                         );
-                                                      console.log(
-                                                        isdonestoreddata
-                                                      );
 
                                                       if (
                                                         !isdonestoreddata.some(
@@ -379,9 +505,6 @@ export default function Coursetim({ data, currentdate }) {
                                                                 "white"
                                                                   ? "rgb(171, 239, 0)"
                                                                   : "white";
-                                                              console.log(
-                                                                obj[key]
-                                                              );
                                                             }
                                                           }
                                                         }
@@ -391,6 +514,35 @@ export default function Coursetim({ data, currentdate }) {
                                                         JSON.stringify(
                                                           isdonestoreddata
                                                         );
+
+                                                      setpercentofcss(() => {
+                                                        let totaltopics = 0;
+                                                        let completedtopics = 0;
+
+                                                        arrofcoursedata[2].map(
+                                                          (v) => {
+                                                            totaltopics +=
+                                                              v.topics.length;
+                                                          }
+                                                        );
+
+                                                        JSON.parse(
+                                                          localStorage.css_completition
+                                                        ).map((v) => {
+                                                          for (const key in v) {
+                                                            if (
+                                                              v[key] ==
+                                                              "rgb(171, 239, 0)"
+                                                            )
+                                                              completedtopics++;
+                                                          }
+                                                        });
+
+                                                        return Math.round(
+                                                          (100 / totaltopics) *
+                                                            completedtopics
+                                                        );
+                                                      });
 
                                                       break;
 
@@ -436,9 +588,6 @@ export default function Coursetim({ data, currentdate }) {
                                                                 "white"
                                                                   ? "rgb(171, 239, 0)"
                                                                   : "white";
-                                                              console.log(
-                                                                obj[key]
-                                                              );
                                                             }
                                                           }
                                                         }
@@ -448,6 +597,35 @@ export default function Coursetim({ data, currentdate }) {
                                                         JSON.stringify(
                                                           isdonestoreddatahtml
                                                         );
+
+                                                      setpercentofHTML(() => {
+                                                        let totaltopics = 0;
+                                                        let completedtopics = 0;
+
+                                                        arrofcoursedata[1].map(
+                                                          (v) => {
+                                                            totaltopics +=
+                                                              v.topics.length;
+                                                          }
+                                                        );
+
+                                                        JSON.parse(
+                                                          localStorage.HTML_completition
+                                                        ).map((v) => {
+                                                          for (const key in v) {
+                                                            if (
+                                                              v[key] ==
+                                                              "rgb(171, 239, 0)"
+                                                            )
+                                                              completedtopics++;
+                                                          }
+                                                        });
+
+                                                        return Math.round(
+                                                          (100 / totaltopics) *
+                                                            completedtopics
+                                                        );
+                                                      });
 
                                                       break;
 
@@ -493,9 +671,6 @@ export default function Coursetim({ data, currentdate }) {
                                                                 "white"
                                                                   ? "rgb(171, 239, 0)"
                                                                   : "white";
-                                                              console.log(
-                                                                obj[key]
-                                                              );
                                                             }
                                                           }
                                                         }
@@ -505,6 +680,38 @@ export default function Coursetim({ data, currentdate }) {
                                                         JSON.stringify(
                                                           isdonestoreddatamongoDB
                                                         );
+
+                                                      setpercentofmongoDB(
+                                                        () => {
+                                                          let totaltopics = 0;
+                                                          let completedtopics = 0;
+
+                                                          arrofcoursedata[4].map(
+                                                            (v) => {
+                                                              totaltopics +=
+                                                                v.topics.length;
+                                                            }
+                                                          );
+
+                                                          JSON.parse(
+                                                            localStorage.mongoDB_completition
+                                                          ).map((v) => {
+                                                            for (const key in v) {
+                                                              if (
+                                                                v[key] ==
+                                                                "rgb(171, 239, 0)"
+                                                              )
+                                                                completedtopics++;
+                                                            }
+                                                          });
+
+                                                          return Math.round(
+                                                            (100 /
+                                                              totaltopics) *
+                                                              completedtopics
+                                                          );
+                                                        }
+                                                      );
 
                                                       break;
                                                     case "node":
@@ -549,9 +756,6 @@ export default function Coursetim({ data, currentdate }) {
                                                                 "white"
                                                                   ? "rgb(171, 239, 0)"
                                                                   : "white";
-                                                              console.log(
-                                                                obj[key]
-                                                              );
                                                             }
                                                           }
                                                         }
@@ -561,6 +765,36 @@ export default function Coursetim({ data, currentdate }) {
                                                         JSON.stringify(
                                                           isdonestoreddatanode
                                                         );
+
+                                                      setpercentofnode(() => {
+                                                        let totaltopics = 0;
+                                                        let completedtopics = 0;
+
+                                                        arrofcoursedata[3].map(
+                                                          (v) => {
+                                                            totaltopics +=
+                                                              v.topics.length;
+                                                          }
+                                                        );
+
+                                                        JSON.parse(
+                                                          localStorage.node_completition
+                                                        ).map((v) => {
+                                                          for (const key in v) {
+                                                            if (
+                                                              v[key] ==
+                                                              "rgb(171, 239, 0)"
+                                                            )
+                                                              completedtopics++;
+                                                          }
+                                                        });
+
+                                                        return Math.round(
+                                                          (100 / totaltopics) *
+                                                            completedtopics
+                                                        );
+                                                      });
+
                                                       break;
 
                                                     case "react":
@@ -605,9 +839,6 @@ export default function Coursetim({ data, currentdate }) {
                                                                 "white"
                                                                   ? "rgb(171, 239, 0)"
                                                                   : "white";
-                                                              console.log(
-                                                                obj[key]
-                                                              );
                                                             }
                                                           }
                                                         }
@@ -617,6 +848,35 @@ export default function Coursetim({ data, currentdate }) {
                                                         JSON.stringify(
                                                           isdonestoreddatareact
                                                         );
+
+                                                      setpercentofreact(() => {
+                                                        let totaltopics = 0;
+                                                        let completedtopics = 0;
+
+                                                        arrofcoursedata[5].map(
+                                                          (v) => {
+                                                            totaltopics +=
+                                                              v.topics.length;
+                                                          }
+                                                        );
+
+                                                        JSON.parse(
+                                                          localStorage.react_completition
+                                                        ).map((v) => {
+                                                          for (const key in v) {
+                                                            if (
+                                                              v[key] ==
+                                                              "rgb(171, 239, 0)"
+                                                            )
+                                                              completedtopics++;
+                                                          }
+                                                        });
+
+                                                        return Math.round(
+                                                          (100 / totaltopics) *
+                                                            completedtopics
+                                                        );
+                                                      });
 
                                                       break;
                                                     case "javascript":
@@ -661,9 +921,6 @@ export default function Coursetim({ data, currentdate }) {
                                                                 "white"
                                                                   ? "rgb(171, 239, 0)"
                                                                   : "white";
-                                                              console.log(
-                                                                obj[key]
-                                                              );
                                                             }
                                                           }
                                                         }
@@ -673,27 +930,97 @@ export default function Coursetim({ data, currentdate }) {
                                                         JSON.stringify(
                                                           isdonestoreddatajavascript
                                                         );
+
+                                                      setpercentofjavascript(
+                                                        () => {
+                                                          let totaltopics = 0;
+                                                          let completedtopics = 0;
+
+                                                          arrofcoursedata[0].map(
+                                                            (v) => {
+                                                              totaltopics +=
+                                                                v.topics.length;
+                                                            }
+                                                          );
+
+                                                          JSON.parse(
+                                                            localStorage.javascript_completition
+                                                          ).map((v) => {
+                                                            for (const key in v) {
+                                                              if (
+                                                                v[key] ==
+                                                                "rgb(171, 239, 0)"
+                                                              )
+                                                                completedtopics++;
+                                                            }
+                                                          });
+
+                                                          return Math.round(
+                                                            (100 /
+                                                              totaltopics) *
+                                                              completedtopics
+                                                          );
+                                                        }
+                                                      );
+
                                                       break;
 
                                                     default:
-                                                      console.log(" data not found");
+                                                      console.log(
+                                                        " data not found"
+                                                      );
                                                       break;
                                                   }
-                                                
-                                                 
                                                 }}
                                               >
                                                 <svg
                                                   width="100%"
                                                   height="100%"
                                                   viewBox="0 0 24 24"
-                                                  fill={value.branch.branch_name=="javascript"&&localStorage.javascript_completition?getcheck(localStorage.javascript_completition):
-                                                  value.branch.branch_name=="node" &&localStorage.node_completition?getcheck(localStorage.node_completition):
-                                                  value.branch.branch_name=="HTML" &&localStorage.HTML_completition?getcheck(localStorage.HTML_completition):
-                                                  value.branch.branch_name=="mongoDB" &&localStorage.mongoDB_completition?getcheck(localStorage.mongoDB_completition):
-                                                  value.branch.branch_name=="css" &&localStorage.css_completition?getcheck(localStorage.css_completition):
-                                                  value.branch.branch_name=="react" &&localStorage.react_completition?getcheck(localStorage.react_completition):"white"}
-
+                                                  fill={
+                                                    value.branch.branch_name ==
+                                                      "javascript" &&
+                                                    localStorage.javascript_completition
+                                                      ? getcheck(
+                                                          localStorage.javascript_completition
+                                                        )
+                                                      : value.branch
+                                                          .branch_name ==
+                                                          "node" &&
+                                                        localStorage.node_completition
+                                                      ? getcheck(
+                                                          localStorage.node_completition
+                                                        )
+                                                      : value.branch
+                                                          .branch_name ==
+                                                          "HTML" &&
+                                                        localStorage.HTML_completition
+                                                      ? getcheck(
+                                                          localStorage.HTML_completition
+                                                        )
+                                                      : value.branch
+                                                          .branch_name ==
+                                                          "mongoDB" &&
+                                                        localStorage.mongoDB_completition
+                                                      ? getcheck(
+                                                          localStorage.mongoDB_completition
+                                                        )
+                                                      : value.branch
+                                                          .branch_name ==
+                                                          "css" &&
+                                                        localStorage.css_completition
+                                                      ? getcheck(
+                                                          localStorage.css_completition
+                                                        )
+                                                      : value.branch
+                                                          .branch_name ==
+                                                          "react" &&
+                                                        localStorage.react_completition
+                                                      ? getcheck(
+                                                          localStorage.react_completition
+                                                        )
+                                                      : "white"
+                                                  }
                                                   xmlns="http://www.w3.org/2000/svg"
                                                 >
                                                   <path

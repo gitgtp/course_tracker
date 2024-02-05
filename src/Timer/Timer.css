@@ -162,15 +162,11 @@ height: 20px;
     border-radius: 50%;
     color: rgb(0, 0, 0);
     display: flex;
-
     align-items: center;
     justify-content:center;
     
-  
    
 }
-
-
 
 
 .changeday>div:hover{
@@ -196,7 +192,7 @@ height: 20px;
   position: absolute;
 }
 .addcourse:hover{
-  background: rgb(111, 1, 184);
+  background: rgb(161, 43, 240);
 transition-timing-function: ease-in;
 transition-duration: 250ms;
 transform: scale(1.1);

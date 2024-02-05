@@ -1,21 +1,16 @@
-import React, {useMemo, useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./Timer.css";
 import Coursetim from "./coursetimers/Coursetim";
 
-
-// localStorage.clear()
-// Initialize local storage if not present
+//check if data present in stroage if not assign []
 if (!localStorage.data) {
   localStorage.data = JSON.stringify([]);
 }
 
+// export Timer component
 export default function Timer() {
-let data=new Date()
-let [currentdate,setcurrentdate]=useState(data.getDate())
-
-
-
-  console.log('timer')
+  let data = new Date();
+  let [currentdate, setcurrentdate] = useState(data.getDate());
   let [timerboxbg, settimerboxbg] = useState("white");
   let [hour, sethour] = useState(0);
   let [day, setday] = useState(0);
@@ -79,6 +74,7 @@ let [currentdate,setcurrentdate]=useState(data.getDate())
   let getlocalstorage = JSON.parse(localStorage.data);
 
   //adding data to localstorage
+
   let addcoursetostorage = () => {
     let whichbranch;
     let whichhour = hour;
@@ -112,7 +108,6 @@ let [currentdate,setcurrentdate]=useState(data.getDate())
       console.log("pleae enter");
     } else {
       settimerboxbg("white");
-   
 
       let days = Math.round((28 / whichdays) * 7);
       let month = days / 28;
@@ -125,35 +120,45 @@ let [currentdate,setcurrentdate]=useState(data.getDate())
         }
       }
 
-      let date=new Date()
+      let date = new Date();
 
-      getlocalstorage.push({
-        id: getlocalstorage.length,
-        branch: whichbranch,
-        hours: whichhour,
-        days: whichdays,
-        learning_ability: whichability,
-        whencreate:{
-          date:date.getDate(),
-          month:date.getMonth(),
-          year:date.getFullYear()
-        },
-        totaltimetodo: {
-          days: days,
-          month: parseInt(month.toString().slice(0, 1)),
-          remaindays: Math.round((28 / 100) * aftermonth),
-        },
-        remainingdays:days
-      });
+      // Check if the branch_name already exists in the array
+      if (
+        !getlocalstorage.some(
+          (item) => item.branch.branch_name === whichbranch.branch_name
+        )
+      ) {
+        // If it doesn't exist, add the new item to the array
+        getlocalstorage.push({
+          id: getlocalstorage.length,
+          branch: whichbranch,
+          hours: whichhour,
+          days: whichdays,
+          learning_ability: whichability,
+          whencreate: {
+            date: date.getDate(),
+            month: date.getMonth(),
+            year: date.getFullYear(),
+          },
+          totaltimetodo: {
+            days: days,
+            month: date.getMonth() + 1, // Adding 1 because getMonth() returns 0-based month
+            remaindays: Math.round((28 / 100) * aftermonth),
+          },
+          remainingdays: days,
+        });
 
-      // Save updated data to local storage
-      localStorage.data = JSON.stringify(getlocalstorage);
+        // Save updated data to local storage
+        localStorage.data = JSON.stringify(getlocalstorage);
 
-      setmetadata(JSON.parse(localStorage.data));
+        setmetadata(JSON.parse(localStorage.data));
+      } else {
+        // If it already exists, you may want to handle this case
+        console.log("Item with the same branch_name already exists");
+      }
     }
   };
-  
-  
+
   return (
     <>
       <div className="timer_box" style={{ backgroundColor: timerboxbg }}>
